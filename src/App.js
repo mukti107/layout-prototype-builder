@@ -41,7 +41,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 };
 
 const Content = styled.div`
-    margin-right: 200px;
+    margin-left: 20px;
 `;
 
 const Item = styled.div`
@@ -85,11 +85,17 @@ const List = styled.div`
 `;
 
 const Kiosk = styled(List)`
-    position: absolute;
+    position: fixed;
     top: 0;
-    right: 0;
+    left: -180px;
     bottom: 0;
     width: 200px;
+    transition: left 0.25s, background-color 0.25s;
+    background-color: black;
+    color: #fff;
+    &:hover{
+        left: 0;
+    }
 `;
 
 const Container = styled(List)`
@@ -112,9 +118,6 @@ const Notice = styled.div`
 
 export default function App() {
     const [items, setItems] = React.useState([]);
-
-    // const items = [];
-    // const setItems = () => {};
 
     const onDragEnd = (result) => {
         const { source, destination, draggableId } = result;
@@ -160,30 +163,32 @@ export default function App() {
                         {layoutGroups.map((layoutGroup) => (
                             <div>
                                 <b>{layoutGroup.name}</b>
-                                {layoutGroup.layouts.map((layout, index) => <Draggable
-                                    key={layout.id}
-                                    draggableId={layout.id}
-                                    index={index}>
-                                    {(draggableProvided, draggableSnapshot) => (
-                                        <React.Fragment>
-                                            <Item
-                                                ref={draggableProvided.innerRef}
-                                                {...draggableProvided.draggableProps}
-                                                {...draggableProvided.dragHandleProps}
-                                                isDragging={draggableSnapshot.isDragging}
-                                                style={
-                                                    draggableProvided.draggableProps.style
-                                                }>
-                                                <img alt={layout.name} src={layout.variations.light} />
-                                            </Item>
-                                            {draggableSnapshot.isDragging && (
-                                                <Item>
+                                <div>
+                                    {layoutGroup.layouts.map((layout, index) => <Draggable
+                                        key={layout.id}
+                                        draggableId={layout.id}
+                                        index={index}>
+                                        {(draggableProvided, draggableSnapshot) => (
+                                            <React.Fragment>
+                                                <Item
+                                                    ref={draggableProvided.innerRef}
+                                                    {...draggableProvided.draggableProps}
+                                                    {...draggableProvided.dragHandleProps}
+                                                   
+                                                    style={
+                                                        draggableProvided.draggableProps.style
+                                                    }>
                                                     <img alt={layout.name} src={layout.variations.light} />
                                                 </Item>
-                                            )}
-                                        </React.Fragment>
-                                    )}
-                                </Draggable>)}
+                                                {draggableSnapshot.isDragging && (
+                                                    <Item>
+                                                        <img alt={layout.name} src={layout.variations.light} />
+                                                    </Item>
+                                                )}
+                                            </React.Fragment>
+                                        )}
+                                    </Draggable>)}
+                                </div>
                             </div>
                         ))}
                     </Kiosk>
