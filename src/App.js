@@ -3,6 +3,7 @@ import { v4 as uuid} from 'uuid';
 import styled from 'styled-components';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import layouts, {layoutGroups} from './layouts';
+import { find } from 'lodash';
 // import console = require('console');
 
 // a little function to help us with reordering the result
@@ -16,12 +17,10 @@ const reorder = (list, startIndex, endIndex) => {
 /**
  * Moves an item from one list to another list.
  */
-const copy = (source, destination, droppableSource, droppableDestination) => {
+const copy = (item, destination, droppableSource, droppableDestination) => {
     console.log('==> dest', destination);
 
-    const sourceClone = Array.from(source);
     const destClone = Array.from(destination);
-    const item = sourceClone[droppableSource.index];
 
     destClone.splice(droppableDestination.index, 0, { ...item, id: uuid() });
     return destClone;
@@ -117,7 +116,7 @@ export default function App() {
     // const setItems = () => {};
 
     const onDragEnd = (result) => {
-        const { source, destination } = result;
+        const { source, destination, draggableId } = result;
 
         console.log('==> result', result);
 
@@ -130,18 +129,18 @@ export default function App() {
             case destination.droppableId:
                 setItems(
                     reorder(
-                        items[source.droppableId],
+                        items,
                         source.index,
                         destination.index
                     )
                 );
                 break;
             case 'ITEMS':
-                setItems(copy(layouts, items, source, destination));
+                setItems(copy(find(layouts, {id: draggableId}), items, source, destination));
                 break;
             default:
                 setItems(
-                    move(items[source.droppableId], items, source, destination)
+                    move(items, items, source, destination)
                 );
                 break;
         }
@@ -224,6 +223,7 @@ export default function App() {
                                                           />
                                                       </svg>
                                                   </Handle>
+                                                  {/* {JSON.stringify(item)} */}
                                                   <img src={item.variations.light} />
                                               </Item>
                                           )}
