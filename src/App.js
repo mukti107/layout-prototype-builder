@@ -2,6 +2,7 @@ import React from 'react';
 import { v4 as uuid} from 'uuid';
 import styled from 'styled-components';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import layouts, {layoutGroups} from './layouts';
 // import console = require('console');
 
 // a little function to help us with reordering the result
@@ -47,20 +48,16 @@ const Content = styled.div`
 const Item = styled.div`
     display: flex;
     user-select: none;
-    padding: 0.5rem;
+    padding: 0;
     margin: 0 0 0.5rem 0;
-    align-items: flex-start;
-    align-content: flex-start;
+    
     line-height: 1.5;
     border-radius: 3px;
     background: #fff;
     border: 1px
         ${(props) => (props.isDragging ? 'dashed #4099ff' : 'solid #ddd')};
-`;
-
-const Clone = styled(Item)`
-    + div {
-        display: none !important;
+    img{
+        width: 100%;
     }
 `;
 
@@ -113,29 +110,6 @@ const Notice = styled.div`
     color: #aaa;
 `;
 
-const ITEMS = [
-    {
-        id: uuid(),
-        content: 'Headline'
-    },
-    {
-        id: uuid(),
-        content: 'Copy'
-    },
-    {
-        id: uuid(),
-        content: 'Image'
-    },
-    {
-        id: uuid(),
-        content: 'Slideshow'
-    },
-    {
-        id: uuid(),
-        content: 'Quote'
-    }
-];
-
 export default function App() {
     const [items, setItems] = React.useState([]);
 
@@ -163,7 +137,7 @@ export default function App() {
                 );
                 break;
             case 'ITEMS':
-                setItems(copy(ITEMS, items, source, destination));
+                setItems(copy(layouts, items, source, destination));
                 break;
             default:
                 setItems(
@@ -181,30 +155,36 @@ export default function App() {
                 {(dropableProvided, dropableSnapshot) => (
                     <Kiosk
                         ref={dropableProvided.innerRef}
-                        isDraggingOver={dropableSnapshot.isDraggingOver}>
-                        {ITEMS.map((item, index) => (
-                            <Draggable
-                                key={item.id}
-                                draggableId={item.id}
-                                index={index}>
-                                {(draggableProvided, draggableSnapshot) => (
-                                    <React.Fragment>
-                                        <Item
-                                            ref={draggableProvided.innerRef}
-                                            {...draggableProvided.draggableProps}
-                                            {...draggableProvided.dragHandleProps}
-                                            isDragging={draggableSnapshot.isDragging}
-                                            style={
-                                                draggableProvided.draggableProps.style
-                                            }>
-                                            {item.content}
-                                        </Item>
-                                        {draggableSnapshot.isDragging && (
-                                            <Clone>{item.content}</Clone>
-                                        )}
-                                    </React.Fragment>
-                                )}
-                            </Draggable>
+                        isDraggingOver={dropableSnapshot.isDraggingOver}
+                        >
+                        {layoutGroups.map((layoutGroup) => (
+                            <div>
+                                <b>{layoutGroup.name}</b>
+                                {layoutGroup.layouts.map((layout, index) => <Draggable
+                                    key={layout.id}
+                                    draggableId={layout.id}
+                                    index={index}>
+                                    {(draggableProvided, draggableSnapshot) => (
+                                        <React.Fragment>
+                                            <Item
+                                                ref={draggableProvided.innerRef}
+                                                {...draggableProvided.draggableProps}
+                                                {...draggableProvided.dragHandleProps}
+                                                isDragging={draggableSnapshot.isDragging}
+                                                style={
+                                                    draggableProvided.draggableProps.style
+                                                }>
+                                                <img src={layout.variations.light} />
+                                            </Item>
+                                            {draggableSnapshot.isDragging && (
+                                                <Item>
+                                                    <img src={layout.variations.light} />
+                                                </Item>
+                                            )}
+                                        </React.Fragment>
+                                    )}
+                                </Draggable>)}
+                            </div>
                         ))}
                     </Kiosk>
                 )}
@@ -244,7 +224,7 @@ export default function App() {
                                                           />
                                                       </svg>
                                                   </Handle>
-                                                  {item.content}
+                                                  <img src={item.variations.light} />
                                               </Item>
                                           )}
                                       </Draggable>
