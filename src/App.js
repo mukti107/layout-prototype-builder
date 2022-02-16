@@ -94,6 +94,7 @@ const Kiosk = styled(List)`
 
 const Container = styled(List)`
     margin: 0.5rem 0.5rem 1.5rem;
+    min-height: 200px;
     background: #ccc;
 `;
 
