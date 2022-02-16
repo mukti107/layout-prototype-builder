@@ -173,11 +173,11 @@ export default function App() {
                                                 style={
                                                     draggableProvided.draggableProps.style
                                                 }>
-                                                <img src={layout.variations.light} />
+                                                <img alt={layout.name} src={layout.variations.light} />
                                             </Item>
                                             {draggableSnapshot.isDragging && (
                                                 <Item>
-                                                    <img src={layout.variations.light} />
+                                                    <img alt={layout.name} src={layout.variations.light} />
                                                 </Item>
                                             )}
                                         </React.Fragment>
@@ -224,7 +224,7 @@ export default function App() {
                                                       </svg>
                                                   </Handle>
                                                   {/* {JSON.stringify(item)} */}
-                                                  <img src={item.variations.light} />
+                                                  <img alt={item.name} src={item.variations.light} />
                                               </Item>
                                           )}
                                       </Draggable>
