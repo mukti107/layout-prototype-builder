@@ -53,8 +53,7 @@ const Item = styled.div`
     line-height: 1.5;
     border-radius: 3px;
     background: #fff;
-    border: 1px
-        ${(props) => (props.isDragging ? 'dashed #4099ff' : 'solid #ddd')};
+    border: 1px ${(props) => (props.isDragging ? 'dashed #4099ff' : 'solid #ddd')};
     img{
         width: 100%;
     }
@@ -65,7 +64,7 @@ const Handle = styled.div`
     align-items: center;
     align-content: center;
     user-select: none;
-    margin: -0.5rem 0.5rem -0.5rem -0.5rem;
+    // margin: -0.5rem 0.5rem -0.5rem -0.5rem;
     padding: 0.5rem;
     line-height: 1.5;
     border-radius: 3px 0 0 3px;
@@ -99,7 +98,6 @@ const Kiosk = styled(List)`
 `;
 
 const Container = styled(List)`
-    margin: 0.5rem 0.5rem 1.5rem;
     min-height: 200px;
     background: #ccc;
 `;
