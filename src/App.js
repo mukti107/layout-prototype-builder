@@ -12,10 +12,14 @@ import {
   PopOverListImg,
   PopOverListItem,
   PopOverListItemDelete,
+  PopOverListItemHandle,
   PopOverListLabel,
   PopOverWrap,
+  ToggleBox,
+  ToggleLabel,
 } from "./Elements/AppStyled";
 import "./App.css";
+
 // import console = require('console');
 
 // a little function to help us with reordering the result
@@ -34,7 +38,11 @@ const copy = (item, destination, droppableSource, droppableDestination) => {
 
   const destClone = Array.from(destination);
 
-  destClone.splice(droppableDestination.index, 0, { ...item, id: uuid() });
+  destClone.splice(droppableDestination.index, 0, {
+    ...item,
+    variant: "light",
+    id: uuid(),
+  });
   return destClone;
 };
 
@@ -63,9 +71,11 @@ const Item = styled.div`
   margin: 0 0 0.5rem 0;
   line-height: 1.5;
   border-radius: 3px;
+  overflow: hidden;
   position: relative;
   background: #fff;
-  border: 1px ${(props) => (props.isDragging ? "dashed #4099ff" : "solid #ddd")};
+  // border: 1px ${(props) =>
+    props.isDragging ? "dashed #4099ff" : "solid #ddd"};
   img {
     width: 100%;
   }
@@ -126,6 +136,11 @@ const Notice = styled.div`
 export default function App() {
   const [items, setItems] = React.useState([]);
   const [showLayout, setShowLayout] = React.useState(null);
+
+  const handleDelete = (id) => {
+    const RemoveItem = items.filter((item) => item.id !== id);
+    setItems(RemoveItem);
+  };
 
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
@@ -237,51 +252,88 @@ export default function App() {
                         >
                           <PopOverWrap>
                             <PopOverList>
-                              <PopOverListItem>
-                                <PopOverListImg
-                                  viewBox="0 0 24 24"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title />
-                                  <path
-                                    d="M21.32,10.05l-1.74-.58a8,8,0,0,0-.43-1.05L20,6.79a1,1,0,0,0-.19-1.15L18.36,4.22A1,1,0,0,0,17.21,4l-1.63.82a8,8,0,0,0-1.05-.43L14,2.68A1,1,0,0,0,13,2H11a1,1,0,0,0-.95.68L9.47,4.42a8,8,0,0,0-1.05.43L6.79,4a1,1,0,0,0-1.15.19L4.22,5.64A1,1,0,0,0,4,6.79l.82,1.63a8,8,0,0,0-.43,1.05l-1.74.58A1,1,0,0,0,2,11v2a1,1,0,0,0,.68.95l1.74.58a8,8,0,0,0,.43,1.05L4,17.21a1,1,0,0,0,.19,1.15l1.42,1.42A1,1,0,0,0,6.79,20l1.63-.82a8,8,0,0,0,1.05.43l.58,1.74A1,1,0,0,0,11,22h2a1,1,0,0,0,.95-.68l.58-1.74a8,8,0,0,0,1.05-.43l1.63.82a1,1,0,0,0,1.15-.19l1.42-1.42A1,1,0,0,0,20,17.21l-.82-1.63a8,8,0,0,0,.43-1.05L21.32,14A1,1,0,0,0,22,13V11A1,1,0,0,0,21.32,10.05ZM12,16a4,4,0,1,1,4-4A4,4,0,0,1,12,16Z"
-                                    fill="#464646"
-                                  />
-                                </PopOverListImg>
+                              <PopOverListItemHandle
+                                {...dragableProvided.dragHandleProps}
+                              >
+                                <Handle>
+                                  <PopOverListImg
+                                    viewBox="0 0 96 96"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <title />
+                                    <path d="M94.2422,43.7578l-12-12a5.9994,5.9994,0,0,0-8.4844,8.4844L75.5156,42H54V20.4844l1.7578,1.7578a5.9994,5.9994,0,0,0,8.4844-8.4844l-12-12a5.9979,5.9979,0,0,0-8.4844,0l-12,12a5.9994,5.9994,0,0,0,8.4844,8.4844L42,20.4844V42H20.4844l1.7578-1.7578a5.9994,5.9994,0,0,0-8.4844-8.4844l-12,12a5.9979,5.9979,0,0,0,0,8.4844l12,12a5.9994,5.9994,0,1,0,8.4844-8.4844L20.4844,54H42V75.5156l-1.7578-1.7578a5.9994,5.9994,0,0,0-8.4844,8.4844l12,12a5.9979,5.9979,0,0,0,8.4844,0l12-12a5.9994,5.9994,0,0,0-8.4844-8.4844L54,75.5156V54H75.5156l-1.7578,1.7578a5.9994,5.9994,0,1,0,8.4844,8.4844l12-12A5.9979,5.9979,0,0,0,94.2422,43.7578Z" />
+                                  </PopOverListImg>
+                                </Handle>
                                 <PopOverListLabel>Move</PopOverListLabel>
-                              </PopOverListItem>
-                              <PopOverListItemDelete>
+                              </PopOverListItemHandle>
+                              <PopOverListItemDelete
+                                onClick={() => handleDelete(item.id)}
+                              >
                                 <PopOverListImg
                                   viewBox="0 0 512 512"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <title />
                                   <g data-name="1" id="_1">
-                                    <path d="M356.65,450H171.47a41,41,0,0,1-40.9-40.9V120.66a15,15,0,0,1,15-15h237a15,15,0,0,1,15,15V409.1A41,41,0,0,1,356.65,450ZM160.57,135.66V409.1a10.91,10.91,0,0,0,10.9,10.9H356.65a10.91,10.91,0,0,0,10.91-10.9V135.66Z" />
-                                    <path d="M327.06,135.66h-126a15,15,0,0,1-15-15V93.4A44.79,44.79,0,0,1,230.8,48.67h66.52A44.79,44.79,0,0,1,342.06,93.4v27.26A15,15,0,0,1,327.06,135.66Zm-111-30h96V93.4a14.75,14.75,0,0,0-14.74-14.73H230.8A14.75,14.75,0,0,0,216.07,93.4Z" />
-                                    <path d="M264.06,392.58a15,15,0,0,1-15-15V178.09a15,15,0,1,1,30,0V377.58A15,15,0,0,1,264.06,392.58Z" />
-                                    <path d="M209.9,392.58a15,15,0,0,1-15-15V178.09a15,15,0,0,1,30,0V377.58A15,15,0,0,1,209.9,392.58Z" />
-                                    <path d="M318.23,392.58a15,15,0,0,1-15-15V178.09a15,15,0,0,1,30,0V377.58A15,15,0,0,1,318.23,392.58Z" />
-                                    <path d="M405.81,135.66H122.32a15,15,0,0,1,0-30H405.81a15,15,0,0,1,0,30Z" />
+                                    <path
+                                      d="M356.65,450H171.47a41,41,0,0,1-40.9-40.9V120.66a15,15,0,0,1,15-15h237a15,15,0,0,1,15,15V409.1A41,41,0,0,1,356.65,450ZM160.57,135.66V409.1a10.91,10.91,0,0,0,10.9,10.9H356.65a10.91,10.91,0,0,0,10.91-10.9V135.66Z"
+                                      fill="#fff"
+                                    />
+                                    <path
+                                      d="M327.06,135.66h-126a15,15,0,0,1-15-15V93.4A44.79,44.79,0,0,1,230.8,48.67h66.52A44.79,44.79,0,0,1,342.06,93.4v27.26A15,15,0,0,1,327.06,135.66Zm-111-30h96V93.4a14.75,14.75,0,0,0-14.74-14.73H230.8A14.75,14.75,0,0,0,216.07,93.4Z"
+                                      fill="#fff"
+                                    />
+                                    <path
+                                      d="M264.06,392.58a15,15,0,0,1-15-15V178.09a15,15,0,1,1,30,0V377.58A15,15,0,0,1,264.06,392.58Z"
+                                      fill="#fff"
+                                    />
+                                    <path
+                                      d="M209.9,392.58a15,15,0,0,1-15-15V178.09a15,15,0,0,1,30,0V377.58A15,15,0,0,1,209.9,392.58Z"
+                                      fill="#fff"
+                                    />
+                                    <path
+                                      d="M318.23,392.58a15,15,0,0,1-15-15V178.09a15,15,0,0,1,30,0V377.58A15,15,0,0,1,318.23,392.58Z"
+                                      fill="#fff"
+                                    />
+                                    <path
+                                      d="M405.81,135.66H122.32a15,15,0,0,1,0-30H405.81a15,15,0,0,1,0,30Z"
+                                      fill="#fff"
+                                    />
                                   </g>
                                 </PopOverListImg>
                                 <PopOverListLabel>Delete</PopOverListLabel>
                               </PopOverListItemDelete>
-                            </PopOverList>
-                            <PopOverList>
-                              <Handle {...dragableProvided.dragHandleProps}>
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                  <path
-                                    fill="currentColor"
-                                    d="M3,15H21V13H3V15M3,19H21V17H3V19M3,11H21V9H3V11M3,5V7H21V5H3Z"
+                              <PopOverListItem>
+                                <div style={{ position: "relative" }}>
+                                  <ToggleBox
+                                    type="checkbox"
+                                    id="switch"
+                                    checked={item.variant === "dark"}
+                                    onChange={({ target: { checked } }) =>
+                                      setItems((items) =>
+                                        items.map((_item) => {
+                                          console.log(_item);
+                                          if (_item.id !== item.id)
+                                            return _item;
+                                          return {
+                                            ...item,
+                                            variant: checked ? "dark" : "light",
+                                          };
+                                        })
+                                      )
+                                    }
                                   />
-                                </svg>
-                              </Handle>
-                              <PopOverListLabel>Delete</PopOverListLabel>
+                                  <ToggleLabel></ToggleLabel>
+                                </div>
+                                <PopOverListLabel>Toggle</PopOverListLabel>
+                              </PopOverListItem>
                             </PopOverList>
                           </PopOverWrap>
                           {/* {JSON.stringify(item)} */}
-                          <img alt={item.name} src={item.variations.light} />
+                          <img
+                            alt={item.name}
+                            src={item.variations[item.variant]}
+                          />
                         </Item>
                       )}
                     </Draggable>
