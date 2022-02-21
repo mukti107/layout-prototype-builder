@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Sun from "../../src/images/sun.png";
 
 export const LayoutWrap = styled.div``;
 
