@@ -169,3 +169,37 @@ export const ToggleLabel = styled.label`
     background-color: #fff;
   }
 `;
+
+export const ExportBtn = styled.button`
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-transform: uppercase;
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+  &:hover,
+  &:focus {
+    background-color: #333;
+    border-color: #333;
+    color: #fff;
+  }
+
+  &:hover svg,
+  &:focus svg {
+    fill: #fff;
+  }
+  > svg {
+    width: 20px;
+    margin-right: 5px;
+  }
+`;
+
+export const BtnWrap = styled.div`
+  display: flex;
+  justify-content: end;
+  margin-bottom: 10px;
+`;

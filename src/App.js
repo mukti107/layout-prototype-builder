@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import { v4 as uuid } from "uuid";
 import styled from "styled-components";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -19,6 +19,8 @@ import {
   PopOverWrap,
   ToggleBox,
   ToggleLabel,
+  ExportBtn,
+  BtnWrap,
 } from "./Elements/AppStyled";
 import "./App.css";
 
@@ -114,9 +116,50 @@ const Notice = styled.div`
   color: #aaa;
 `;
 
+function downloadTextASFile(filename, text) {
+  var element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+  );
+  element.setAttribute("download", filename);
+
+  element.style.display = "none";
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 export default function App() {
   const [items, setItems] = React.useState([]);
   const [showLayout, setShowLayout] = React.useState(null);
+
+  const inputFile = useRef(null);
+  console.log(JSON.stringify(items));
+
+  const onFileUpload = (e) => {
+    const fileReader = new FileReader();
+    fileReader.readAsText(e.target.files[0], "UTF-8");
+    fileReader.onload = (e) => {
+      try {
+        setItems(JSON.parse(e.target.result));
+      } catch (e) {
+        alert("Invalid file selected");
+      }
+    };
+  };
+
+  const onButtonClick = () => {
+    // `current` points to the mounted file input element
+    inputFile.current.click();
+  };
+
+  const download = () =>
+    items.length === 0
+      ? ""
+      : downloadTextASFile("text.txt", JSON.stringify(items));
 
   const activeLayoutGroup = find(layoutGroups, { id: showLayout });
 
@@ -215,6 +258,50 @@ export default function App() {
               ref={dropableProvided.innerRef}
               isDraggingOver={droppableSnapshot.isDraggingOver}
             >
+              <BtnWrap>
+                <ExportBtn type="submit" onClick={download}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-download"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Download
+                </ExportBtn>
+                <input
+                  type="file"
+                  ref={inputFile}
+                  onChange={onFileUpload}
+                  style={{ display: "none" }}
+                />
+                <ExportBtn onClick={onButtonClick}>
+                  {" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 64 44.44"
+                  >
+                    <defs></defs>
+                    <title>Asset 64</title>
+                    <g id="Layer_2" data-name="Layer 2">
+                      <g id="Layer_1-2" data-name="Layer 1">
+                        <path
+                          class="cls-1"
+                          d="M50.72,10.28a22.19,22.19,0,0,0-39.8,5,14.86,14.86,0,0,0,4,29.19H46.67a17.32,17.32,0,0,0,4-34.16ZM29.33,39.11H14.89a9.52,9.52,0,0,1-1.46-18.94l1.76-.27.43-1.73A16.86,16.86,0,0,1,46.71,14l.63,1.12,1.27.21A11.91,11.91,0,0,1,58.67,27.11a12.1,12.1,0,0,1-1,4.8,12,12,0,0,1-11,7.2h-12V26.86l3,3a2.67,2.67,0,0,0,3.77,0,2.68,2.68,0,0,0,0-3.78l-7.54-7.54a2.76,2.76,0,0,0-3.78,0l-7.54,7.54a2.67,2.67,0,1,0,3.77,3.78l3-3V39.11"
+                        />
+                      </g>
+                    </g>
+                  </svg>{" "}
+                  Imports
+                </ExportBtn>
+              </BtnWrap>
               {items.length
                 ? items.map((item, index) => (
                     <Draggable
