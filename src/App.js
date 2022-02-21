@@ -1,15 +1,17 @@
-import React, { useCallback, useRef } from "react";
-import { v4 as uuid } from "uuid";
-import styled from "styled-components";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import layouts, { layoutGroups } from "./layouts";
 import { find } from "lodash";
+import React, { useRef } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import styled from "styled-components";
+import { v4 as uuid } from "uuid";
+import "./App.css";
 import {
+  BtnWrap,
+  ExportBtn,
   Kiosk,
-  List,
   LayoutItem,
   Layouts,
   LayoutWrap,
+  List,
   PopOverList,
   PopOverListImg,
   PopOverListItem,
@@ -19,10 +21,8 @@ import {
   PopOverWrap,
   ToggleBox,
   ToggleLabel,
-  ExportBtn,
-  BtnWrap,
 } from "./Elements/AppStyled";
-import "./App.css";
+import layouts, { layoutGroups } from "./layouts";
 
 // import console = require('console');
 
