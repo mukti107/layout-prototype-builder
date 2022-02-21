@@ -1,16 +1,53 @@
 import styled from "styled-components";
 
-export const LayoutWrap = styled.div``;
+export const List = styled.div`
+  background: #fff;
+  flex: 0 0 150px;
+  font-family: sans-serif;
+`;
+
+export const Kiosk = styled(List)`
+  position: fixed;
+  top: 0;
+  left: -230px;
+  bottom: 0;
+  width: 250px;
+  transition: 0.6s ease-in-out;
+  color: #fff;
+  z-index: 999;
+  &:after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-color: black;
+  }
+  &:hover {
+    left: 0;
+  }
+`;
+
+export const LayoutWrap = styled.div`
+  position: relative;
+  z-index: 9;
+`;
 
 export const Layouts = styled.div`
   position: absolute;
-  transform: translateX(100%);
+  transform: translateX(-100%);
   top: 0;
   right: 0;
   height: 100vh;
   background: #f2f2f2;
   padding: 15px;
   transform-origin: top right;
+  transition: transform 0.6s;
+  z-index: -1;
+  ${Kiosk}:hover & {
+    ${({ show }) => show && "transform: translateX(100%);"}
+  }
 `;
 
 export const LayoutItem = styled.button`
@@ -47,10 +84,7 @@ export const PopOverListItem = styled.li`
   }
 `;
 
-export const PopOverListItemDelete = styled(PopOverListItem)`
-  // background-color: #333;
-  // color: #fff;
-`;
+export const PopOverListItemDelete = styled(PopOverListItem)``;
 
 export const PopOverListItemHandle = styled(PopOverListItem)`
   background-color: #fff;

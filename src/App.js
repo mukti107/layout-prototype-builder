@@ -5,6 +5,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import layouts, { layoutGroups } from "./layouts";
 import { find } from "lodash";
 import {
+  Kiosk,
+  List,
   LayoutItem,
   Layouts,
   LayoutWrap,
@@ -94,27 +96,6 @@ const Handle = styled.div`
   color: #000;
 `;
 
-const List = styled.div`
-  background: #fff;
-  flex: 0 0 150px;
-  font-family: sans-serif;
-`;
-
-const Kiosk = styled(List)`
-  position: fixed;
-  top: 0;
-  left: -230px;
-  bottom: 0;
-  width: 250px;
-  transition: 0.6s ease-in-out;
-  background-color: black;
-  color: #fff;
-  z-index: 1;
-  &:hover {
-    left: 0;
-  }
-`;
-
 const Container = styled(List)`
   min-height: 100vh;
   //   background: #ccc;
@@ -136,6 +117,8 @@ const Notice = styled.div`
 export default function App() {
   const [items, setItems] = React.useState([]);
   const [showLayout, setShowLayout] = React.useState(null);
+
+  const activeLayoutGroup = find(layoutGroups, { id: showLayout });
 
   const handleDelete = (id) => {
     const RemoveItem = items.filter((item) => item.id !== id);
@@ -185,46 +168,43 @@ export default function App() {
                 >
                   {layoutGroup.name}
                 </LayoutItem>
-                {showLayout === layoutGroup.id ? (
-                  <Layouts
-                    showLayout={showLayout}
-                    className={showLayout ? "fade" : ""}
-                  >
-                    {layoutGroup.layouts.map((layout, index) => (
-                      <Draggable
-                        key={layout.id}
-                        draggableId={layout.id}
-                        index={index}
-                      >
-                        {(draggableProvided, draggableSnapshot) => (
-                          <React.Fragment>
-                            <Item
-                              ref={draggableProvided.innerRef}
-                              {...draggableProvided.draggableProps}
-                              {...draggableProvided.dragHandleProps}
-                              style={draggableProvided.draggableProps.style}
-                            >
-                              <img
-                                alt={layout.name}
-                                src={layout.variations.light}
-                              />
-                            </Item>
-                            {draggableSnapshot.isDragging && (
-                              <Item>
-                                <img
-                                  alt={layout.name}
-                                  src={layout.variations.light}
-                                />
-                              </Item>
-                            )}
-                          </React.Fragment>
-                        )}
-                      </Draggable>
-                    ))}
-                  </Layouts>
-                ) : null}
               </LayoutWrap>
             ))}
+
+            <Layouts show={!!activeLayoutGroup}>
+              {activeLayoutGroup &&
+                activeLayoutGroup.layouts.map((layout, index) => (
+                  <Draggable
+                    key={layout.id}
+                    draggableId={layout.id}
+                    index={index}
+                  >
+                    {(draggableProvided, draggableSnapshot) => (
+                      <React.Fragment>
+                        <Item
+                          ref={draggableProvided.innerRef}
+                          {...draggableProvided.draggableProps}
+                          {...draggableProvided.dragHandleProps}
+                          style={draggableProvided.draggableProps.style}
+                        >
+                          <img
+                            alt={layout.name}
+                            src={layout.variations.light}
+                          />
+                        </Item>
+                        {draggableSnapshot.isDragging && (
+                          <Item>
+                            <img
+                              alt={layout.name}
+                              src={layout.variations.light}
+                            />
+                          </Item>
+                        )}
+                      </React.Fragment>
+                    )}
+                  </Draggable>
+                ))}
+            </Layouts>
           </Kiosk>
         )}
       </Droppable>
@@ -244,7 +224,6 @@ export default function App() {
                     >
                       {(dragableProvided, draggableSnapshot) => (
                         <Item
-                          onMouseOver={() => setShowLayout(null)}
                           ref={dragableProvided.innerRef}
                           {...dragableProvided.draggableProps}
                           isDragging={draggableSnapshot.isDragging}
