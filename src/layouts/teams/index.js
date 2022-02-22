@@ -6,7 +6,7 @@ const teams = {
       name: "Team 1",
       id: "team_1",
       variations: {
-        dark: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOzntMgljb4z7Esgx6Q3GunNQQxE5FYNNZM-Ns5L009Lz4fQERVDM_2aKU_-e7rbHbto4&usqp=CAU",
+        dark: "https://vip-go.shutterstock.com/blog/wp-content/uploads/sites/5/2020/05/Website-mockup2-1.jpg?w=750",
         light:
           "https://previews.123rf.com/images/howtogoto/howtogoto1907/howtogoto190700236/128035524-business-marketing-team-collaborate-in-office-group-of-people-meeting-working-together-marketing-com.jpg",
       },
