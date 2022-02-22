@@ -50,6 +50,12 @@ export const Layouts = styled.div`
   }
 `;
 
+export const Container = styled(List)`
+  min-height: 100vh;
+  //   background: #ccc;
+  padding: 50px;
+`;
+
 export const LayoutItem = styled.button`
   padding: 15px;
   width: 100%;
@@ -57,8 +63,12 @@ export const LayoutItem = styled.button`
   color: #fff;
   margin: 0;
   cursor: pointer;
-  border: 0;
   background-color: transparent;
+  border: 0;
+  ${Kiosk}:hover &.active {
+    background-color: #fff;
+    color: #333;
+  }
 `;
 
 export const PopOverListItem = styled.li`
@@ -107,7 +117,7 @@ export const PopOverListImg = styled.svg`
 `;
 
 export const PopOverWrap = styled.div`
-  right: -150px;
+  right: -135px;
   top: 50px;
   transition: 0.3s ease-in-out;
   position: absolute;
@@ -122,8 +132,8 @@ export const PopOverListLabel = styled.span`
   width: 0;
   transition: width 0.25s linear 0s;
   transition-delay: 0.25s;
-  padding-left: 5px;
   overflow: hidden;
+  text-indent: 12px;
 `;
 
 export const ToggleBox = styled.input`
@@ -178,6 +188,12 @@ export const ExportBtn = styled.button`
   cursor: pointer;
   transition: 0.3s ease-in-out;
   text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   &:not(:last-child) {
     margin-right: 5px;
   }

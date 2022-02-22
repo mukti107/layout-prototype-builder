@@ -6,12 +6,12 @@ import { v4 as uuid } from "uuid";
 import "./App.css";
 import {
   BtnWrap,
+  Container,
   ExportBtn,
   Kiosk,
   LayoutItem,
   Layouts,
   LayoutWrap,
-  List,
   PopOverList,
   PopOverListImg,
   PopOverListItem,
@@ -85,6 +85,10 @@ const Item = styled.div`
   }
 `;
 
+const DraggableItem = styled(Item)`
+  margin-bottom: 0;
+`;
+
 const Handle = styled.div`
   display: flex;
   align-items: center;
@@ -96,12 +100,6 @@ const Handle = styled.div`
   background: #fff;
   border-right: 1px solid #ddd;
   color: #000;
-`;
-
-const Container = styled(List)`
-  min-height: 100vh;
-  //   background: #ccc;
-  padding: 50px;
 `;
 
 const Notice = styled.div`
@@ -156,16 +154,22 @@ export default function App() {
     inputFile.current.click();
   };
 
-  const download = () =>
-    items.length === 0
-      ? ""
-      : downloadTextASFile("text.txt", JSON.stringify(items));
+  const download = () => {
+    const name = prompt("File name", `layout-${Date.now()}`);
+    if (items.length > 0 && name !== null) {
+      downloadTextASFile(`${name}.json`, JSON.stringify(items));
+    }
+  };
 
   const activeLayoutGroup = find(layoutGroups, { id: showLayout });
+  console.log(activeLayoutGroup, "asd");
 
   const handleDelete = (id) => {
-    const RemoveItem = items.filter((item) => item.id !== id);
-    setItems(RemoveItem);
+    const shouldDelete = window.confirm("Are you sure?");
+    if (shouldDelete) {
+      const RemoveItem = items.filter((item) => item.id !== id);
+      setItems(RemoveItem);
+    }
   };
 
   const onDragEnd = (result) => {
@@ -203,10 +207,11 @@ export default function App() {
             ref={dropableProvided.innerRef}
             isDraggingOver={dropableSnapshot.isDraggingOver}
           >
-            {layoutGroups.map((layoutGroup) => (
+            {layoutGroups.map((layoutGroup, index) => (
               <LayoutWrap>
                 <LayoutItem
                   type="button"
+                  className={showLayout === layoutGroup.id && "active"}
                   onClick={() => setShowLayout(layoutGroup.id)}
                 >
                   {layoutGroup.name}
@@ -274,7 +279,7 @@ export default function App() {
                     <polyline points="7 10 12 15 17 10"></polyline>
                     <line x1="12" y1="15" x2="12" y2="3"></line>
                   </svg>
-                  Download
+                  Export
                 </ExportBtn>
                 <input
                   type="file"
@@ -299,7 +304,7 @@ export default function App() {
                       </g>
                     </g>
                   </svg>{" "}
-                  Imports
+                  Import
                 </ExportBtn>
               </BtnWrap>
               {items.length
@@ -310,7 +315,7 @@ export default function App() {
                       index={index}
                     >
                       {(dragableProvided, draggableSnapshot) => (
-                        <Item
+                        <DraggableItem
                           ref={dragableProvided.innerRef}
                           {...dragableProvided.draggableProps}
                           isDragging={draggableSnapshot.isDragging}
@@ -400,7 +405,7 @@ export default function App() {
                             alt={item.name}
                             src={item.variations[item.variant]}
                           />
-                        </Item>
+                        </DraggableItem>
                       )}
                     </Draggable>
                   ))
