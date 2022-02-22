@@ -22,7 +22,7 @@ export const Kiosk = styled(List)`
     left: 0;
     top: 0;
     position: absolute;
-    background-color: black;
+    background-color: #333;
   }
   &:hover {
     left: 0;
@@ -40,7 +40,7 @@ export const Layouts = styled.div`
   top: 0;
   right: 0;
   height: 100vh;
-  background: #f2f2f2;
+  background: #444;
   padding: 15px;
   transform-origin: top right;
   transition: transform 0.6s;
@@ -63,9 +63,19 @@ export const LayoutItem = styled.button`
   color: #fff;
   margin: 0;
   cursor: pointer;
+  border: 1px solid transparent;
   background-color: transparent;
-  border: 0;
+  transition: 0.3s ease-in-out;
   ${Kiosk}:hover &.active {
+    background-color: #fff;
+    color: #333;
+  }
+  ${Kiosk}:hover & {
+    border-bottom: 1px solid #5e5e5e;
+  }
+  &:hover,
+  &:focus,
+  &:active {
     background-color: #fff;
     color: #333;
   }

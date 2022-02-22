@@ -87,6 +87,7 @@ const Item = styled.div`
 
 const DraggableItem = styled(Item)`
   margin-bottom: 0;
+  border-radius: 0;
 `;
 
 const Handle = styled.div`
