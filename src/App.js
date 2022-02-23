@@ -23,7 +23,7 @@ import {
   ToggleBox,
   ToggleLabel,
 } from "./Elements/AppStyled";
-import { downloadTextASFile } from "./Helpers.js/Export";
+import { downloadFile, downloadTextASFile } from "./Helpers.js/Export";
 import layouts, { layoutGroups } from "./layouts";
 
 // import console = require('console');
@@ -161,13 +161,10 @@ export default function App() {
   };
 
   function screenshot() {
-    const namingBox = prompt("File name");
+    const namingBox = prompt("File name", `layout-${Date.now()}`);
     if (namingBox) {
-      domtoimage.toJpeg(previewRef.current).then((canvas) => {
-        let link = document.createElement("a");
-        link.setAttribute("download", `${namingBox}.png`);
-        link.setAttribute("href", canvas);
-        link.click();
+      domtoimage.toJpeg(previewRef.current).then((dataUrl) => {
+        downloadFile(`${namingBox}.png`, dataUrl);
       });
     }
   }
@@ -201,61 +198,63 @@ export default function App() {
   // But in this example everything is just done in one place for simplicity
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="ITEMS" isDropDisabled={true}>
-        {(dropableProvided, dropableSnapshot) => (
-          <Kiosk
-            ref={dropableProvided.innerRef}
-            isDraggingOver={dropableSnapshot.isDraggingOver}
-          >
-            {layoutGroups.map((layoutGroup, index) => (
-              <LayoutWrap>
-                <LayoutItem
-                  type="button"
-                  className={showLayout === layoutGroup.id && "active"}
-                  onClick={() => setShowLayout(layoutGroup.id)}
-                >
-                  {layoutGroup.name}
-                </LayoutItem>
-              </LayoutWrap>
-            ))}
-
-            <Layouts show={!!activeLayoutGroup}>
-              {activeLayoutGroup &&
-                activeLayoutGroup.layouts.map((layout, index) => (
-                  <Draggable
-                    key={layout.id}
-                    draggableId={layout.id}
-                    index={index}
+      <Kiosk>
+        <Droppable droppableId="ITEMS" isDropDisabled={true}>
+          {(dropableProvided, dropableSnapshot) => (
+            <div
+              ref={dropableProvided.innerRef}
+              isDraggingOver={dropableSnapshot.isDraggingOver}
+            >
+              {layoutGroups.map((layoutGroup, index) => (
+                <LayoutWrap>
+                  <LayoutItem
+                    type="button"
+                    className={showLayout === layoutGroup.id && "active"}
+                    onClick={() => setShowLayout(layoutGroup.id)}
                   >
-                    {(draggableProvided, draggableSnapshot) => (
-                      <React.Fragment>
-                        <Item
-                          ref={draggableProvided.innerRef}
-                          {...draggableProvided.draggableProps}
-                          {...draggableProvided.dragHandleProps}
-                          style={draggableProvided.draggableProps.style}
-                        >
-                          <img
-                            alt={layout.name}
-                            src={layout.variations.light}
-                          />
-                        </Item>
-                        {draggableSnapshot.isDragging && (
-                          <Item>
+                    {layoutGroup.name}
+                  </LayoutItem>
+                </LayoutWrap>
+              ))}
+
+              <Layouts show={!!activeLayoutGroup}>
+                {activeLayoutGroup &&
+                  activeLayoutGroup.layouts.map((layout, index) => (
+                    <Draggable
+                      key={layout.id}
+                      draggableId={layout.id}
+                      index={index}
+                    >
+                      {(draggableProvided, draggableSnapshot) => (
+                        <React.Fragment>
+                          <Item
+                            ref={draggableProvided.innerRef}
+                            {...draggableProvided.draggableProps}
+                            {...draggableProvided.dragHandleProps}
+                            style={draggableProvided.draggableProps.style}
+                          >
                             <img
                               alt={layout.name}
                               src={layout.variations.light}
                             />
                           </Item>
-                        )}
-                      </React.Fragment>
-                    )}
-                  </Draggable>
-                ))}
-            </Layouts>
-          </Kiosk>
-        )}
-      </Droppable>
+                          {draggableSnapshot.isDragging && (
+                            <Item>
+                              <img
+                                alt={layout.name}
+                                src={layout.variations.light}
+                              />
+                            </Item>
+                          )}
+                        </React.Fragment>
+                      )}
+                    </Draggable>
+                  ))}
+              </Layouts>
+            </div>
+          )}
+        </Droppable>
+      </Kiosk>
       <Content>
         <Droppable droppableId="page">
           {(dropableProvided, droppableSnapshot) => (

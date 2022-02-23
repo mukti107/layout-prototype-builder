@@ -1,15 +1,13 @@
+export function downloadFile(filename, url) {
+  let link = document.createElement("a");
+  link.setAttribute("download", filename);
+  link.setAttribute("href", url);
+  link.click();
+}
+
 export function downloadTextASFile(filename, text) {
-  var element = document.createElement("a");
-  element.setAttribute(
-    "href",
+  downloadFile(
+    filename,
     "data:text/plain;charset=utf-8," + encodeURIComponent(text)
   );
-  element.setAttribute("download", filename);
-
-  element.style.display = "none";
-  document.body.appendChild(element);
-
-  element.click();
-
-  document.body.removeChild(element);
 }

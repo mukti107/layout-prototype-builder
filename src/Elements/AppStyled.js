@@ -7,10 +7,10 @@ export const List = styled.div`
 `;
 
 export const Kiosk = styled(List)`
-  position: fixed;
+  position: sticky;
+  height: 100vh;
   top: 0;
-  left: -230px;
-  bottom: 0;
+  transform: translateX(-230px);
   width: 250px;
   transition: 0.6s ease-in-out;
   color: #fff;
@@ -25,7 +25,7 @@ export const Kiosk = styled(List)`
     background-color: #333;
   }
   &:hover {
-    left: 0;
+    transform: translateX(0);
   }
 `;
 
@@ -36,7 +36,8 @@ export const LayoutWrap = styled.div`
 
 export const Layouts = styled.div`
   position: absolute;
-  transform: translateX(-100%);
+  transform: translateX(0);
+  left: 0;
   top: 0;
   right: 0;
   height: 100vh;
@@ -54,6 +55,7 @@ export const Container = styled(List)`
   min-height: 100vh;
   //   background: #ccc;
   padding: 50px;
+  margin-top: -100vh;
 `;
 
 export const LayoutItem = styled.button`
@@ -73,7 +75,7 @@ export const LayoutItem = styled.button`
   ${Kiosk}:hover & {
     border-bottom: 1px solid #5e5e5e;
   }
-  &:hover  {
+  &:hover {
     background-color: #fff;
     color: #333;
   }
