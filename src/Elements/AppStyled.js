@@ -73,9 +73,7 @@ export const LayoutItem = styled.button`
   ${Kiosk}:hover & {
     border-bottom: 1px solid #5e5e5e;
   }
-  &:hover,
-  &:focus,
-  &:active {
+  &:hover  {
     background-color: #fff;
     color: #333;
   }

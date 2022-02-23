@@ -161,12 +161,15 @@ export default function App() {
   };
 
   function screenshot() {
-    domtoimage.toJpeg(previewRef.current).then((p) => {
-      let link = document.createElement("a");
-      link.setAttribute("download", "screenshot.png");
-      link.setAttribute("href", p);
-      link.click();
-    });
+    const namingBox = prompt("File name");
+    if (namingBox) {
+      domtoimage.toJpeg(previewRef.current).then((canvas) => {
+        let link = document.createElement("a");
+        link.setAttribute("download", `${namingBox}.png`);
+        link.setAttribute("href", canvas);
+        link.click();
+      });
+    }
   }
 
   const onDragEnd = (result) => {
