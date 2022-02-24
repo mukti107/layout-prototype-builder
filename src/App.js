@@ -161,12 +161,18 @@ export default function App() {
     }
   };
 
+  function filter(node) {
+    return node.tagName !== "ul";
+  }
+
   function screenshot() {
     const namingBox = prompt("File name", `layout-${Date.now()}`);
     if (namingBox) {
-      domtoimage.toJpeg(previewRef.current).then((dataUrl) => {
-        downloadFile(`${namingBox}.png`, dataUrl);
-      });
+      domtoimage
+        .toJpeg(previewRef.current, { filter: filter })
+        .then((dataUrl) => {
+          downloadFile(`${namingBox}.png`, dataUrl);
+        });
     }
   }
 
@@ -320,7 +326,7 @@ export default function App() {
                       </g>
                     </g>
                   </svg>
-                  Capture
+                  Download
                 </ExportBtn>
               </BtnWrap>
               <div ref={previewRef}>
@@ -338,7 +344,7 @@ export default function App() {
                             isDragging={draggableSnapshot.isDragging}
                             style={dragableProvided.draggableProps.style}
                           >
-                            <PopOverWrap>
+                            <PopOverWrap className="testWrap">
                               <PopOverList>
                                 <PopOverListItemHandle
                                   {...dragableProvided.dragHandleProps}
