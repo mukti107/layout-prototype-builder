@@ -162,7 +162,8 @@ export default function App() {
   };
 
   function filter(node) {
-    return node.tagName !== "ul";
+    if (node.classList) return !node.classList.contains("PopOverWrap");
+    return true;
   }
 
   function screenshot() {
@@ -344,7 +345,7 @@ export default function App() {
                             isDragging={draggableSnapshot.isDragging}
                             style={dragableProvided.draggableProps.style}
                           >
-                            <PopOverWrap className="testWrap">
+                            <PopOverWrap className="PopOverWrap">
                               <PopOverList>
                                 <PopOverListItemHandle
                                   {...dragableProvided.dragHandleProps}
