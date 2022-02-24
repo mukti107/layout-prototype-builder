@@ -15,6 +15,7 @@ export const Kiosk = styled(List)`
   transition: 0.6s ease-in-out;
   color: #fff;
   z-index: 999;
+  display: inline-block;
   &:after {
     content: "";
     height: 100%;
@@ -55,7 +56,7 @@ export const Container = styled(List)`
   min-height: 100vh;
   //   background: #ccc;
   padding: 50px;
-  margin-top: -100vh;
+  // margin-top: -100vh;
 `;
 
 export const LayoutItem = styled.button`

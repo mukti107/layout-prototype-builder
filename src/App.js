@@ -68,6 +68,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 const Content = styled.div`
   margin-left: 20px;
+  margin-top: -100vh;
 `;
 
 const Item = styled.div`
