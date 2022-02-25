@@ -80,7 +80,6 @@ const Item = styled.div`
   border-radius: 3px;
   overflow: hidden;
   position: relative;
-  background: #fff;
   // border: 1px ${(props) =>
     props.isDragging ? "dashed #4099ff" : "solid #ddd"};
   img {
@@ -202,6 +201,17 @@ export default function App() {
     }
   };
 
+  const getItemStyle = (isDragging, draggableStyle) => ({
+    // some basic styles to make the items look a bit nicer
+    userSelect: "none",
+
+    // change position  if dragging
+    marginLeft: isDragging ? "200px" : "",
+
+    // styles we need to apply on draggables
+    ...draggableStyle,
+  });
+
   // Normally you would want to split things out into separate components.
   // But in this example everything is just done in one place for simplicity
   return (
@@ -239,7 +249,10 @@ export default function App() {
                             ref={draggableProvided.innerRef}
                             {...draggableProvided.draggableProps}
                             {...draggableProvided.dragHandleProps}
-                            style={draggableProvided.draggableProps.style}
+                            style={getItemStyle(
+                              draggableSnapshot.isDragging,
+                              draggableProvided.draggableProps.style
+                            )}
                           >
                             <img
                               alt={layout.name}
