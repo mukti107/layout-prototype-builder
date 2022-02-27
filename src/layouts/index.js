@@ -1,10 +1,8 @@
 import { flatMap } from "lodash";
-import heros from "./heros";
-import testimonials from "./testimonials";
-import teams from "./teams";
 import headers from "./headers";
+import navbars from "./navbars";
 
-export const layoutGroups = [heros, testimonials, teams, headers];
+export const layoutGroups = [navbars, headers];
 
 const layouts = flatMap(layoutGroups, "layouts");
 

@@ -130,7 +130,7 @@ export const PopOverListImg = styled.svg`
 
 export const PopOverWrap = styled.div`
   right: -135px;
-  top: 50px;
+  top: 2px;
   transition: 0.3s ease-in-out;
   position: absolute;
   border-radius: 45px 0 0 45px;
@@ -228,6 +228,11 @@ export const ExportBtn = styled.button`
 
 export const BtnWrap = styled.div`
   display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   justify-content: end;
   margin-bottom: 10px;
+  background-color: #fff;
+  padding: 5px 0;
 `;

@@ -1,14 +1,25 @@
 const fs = require('fs');
+const { capitalize } = require('lodash');
 const path = require('path');
 const uuid = require('uuid');
 
-const groupName = 'headers';
+const [,,groupName] = process.argv;
+
+if(!groupName){
+    console.error('Please provide a layout group name',)
+    process.exit();
+}
 
 const layoutsDirPath = path.resolve(`src/layouts/${groupName}`);
+const imagesDirPath = path.join(layoutsDirPath, `images`);
+const images = fs.readdirSync(imagesDirPath);
 
-const files = fs.readdirSync(path.join(layoutsDirPath, `images`));
+if(!fs.existsSync(imagesDirPath)){
+    console.error('Cannot find directory', imagesDirPath)
+    process.exit();
+}
 
-const layoutGroup = files.map(file=>(
+const layoutGroup = images.map(file=>(
 `{
     name: "${file}",
     id: "${uuid.v4()}",
@@ -20,7 +31,7 @@ const layoutGroup = files.map(file=>(
 
 const layoutGroupContent = `const ${groupName} = {
     id: "${groupName}",
-    name: "${groupName}",
+    name: "${capitalize(groupName)}",
     layouts: [
         ${layoutGroup.join(',\n')}
     ]
@@ -29,9 +40,9 @@ const layoutGroupContent = `const ${groupName} = {
 export default ${groupName};
 `
 
-console.log(layoutGroupContent);
-
 fs.writeFileSync(
     path.join(layoutsDirPath, 'index.js'),
     layoutGroupContent
 );
+
+console.log('done');

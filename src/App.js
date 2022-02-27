@@ -343,7 +343,7 @@ export default function App() {
                   Download
                 </ExportBtn>
               </BtnWrap>
-              <div ref={previewRef}>
+              <div ref={previewRef} style={{maxWidth: 1024, margin: '0 auto'}}>
                 {items.length
                   ? items.map((item, index) => (
                       <Draggable

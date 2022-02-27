@@ -1,10 +1,10 @@
 const headers = {
     id: "headers",
-    name: "headers",
+    name: "Headers",
     layouts: [
         {
     name: "1.png",
-    id: "ebf80898-59e0-476f-ab97-fb46d37feec7",
+    id: "e0c917f6-f70e-44b0-93a6-d52742399c63",
     variations: {
         dark: require('./images/1.png'),
         light: require('./images/1.png'),
@@ -12,7 +12,7 @@ const headers = {
 },
 {
     name: "10.png",
-    id: "ff84e266-0d5e-43e1-9907-710aa737511e",
+    id: "d14bfdfc-6201-439c-ad1c-415b78cb2e2b",
     variations: {
         dark: require('./images/10.png'),
         light: require('./images/10.png'),
@@ -20,7 +20,7 @@ const headers = {
 },
 {
     name: "11.png",
-    id: "50ec72b2-ce9c-47be-9b4a-27f4bd780866",
+    id: "99ebba30-c58c-499e-abaa-de39064b8e5b",
     variations: {
         dark: require('./images/11.png'),
         light: require('./images/11.png'),
@@ -28,7 +28,7 @@ const headers = {
 },
 {
     name: "12.png",
-    id: "807bce67-17e3-4b05-bd54-d03af34eaf7a",
+    id: "b2e3fe02-96b8-4d33-a194-4cb89dcc76ce",
     variations: {
         dark: require('./images/12.png'),
         light: require('./images/12.png'),
@@ -36,7 +36,7 @@ const headers = {
 },
 {
     name: "13.png",
-    id: "f7849280-a93b-4e4a-a7c9-85a0304335a3",
+    id: "7c0ae90b-70de-4bdb-88a3-e97395e25726",
     variations: {
         dark: require('./images/13.png'),
         light: require('./images/13.png'),
@@ -44,7 +44,7 @@ const headers = {
 },
 {
     name: "14.png",
-    id: "5cf2b00e-4b2c-4927-a270-f18665e5ff3b",
+    id: "6d0d5670-ca1e-49c2-a06a-c85e8807e271",
     variations: {
         dark: require('./images/14.png'),
         light: require('./images/14.png'),
@@ -52,7 +52,7 @@ const headers = {
 },
 {
     name: "15.png",
-    id: "b0139af8-ab24-44b7-b3d3-aa467ccc2ee7",
+    id: "49d0ab68-a7a8-4b89-933a-749411c499fe",
     variations: {
         dark: require('./images/15.png'),
         light: require('./images/15.png'),
@@ -60,7 +60,7 @@ const headers = {
 },
 {
     name: "16.png",
-    id: "b870f695-3c2d-4f9e-bbd0-040cdd0086fa",
+    id: "49393444-67e8-4f2b-b7ae-eb03c986d0a4",
     variations: {
         dark: require('./images/16.png'),
         light: require('./images/16.png'),
@@ -68,7 +68,7 @@ const headers = {
 },
 {
     name: "17.png",
-    id: "45403db0-025e-45f8-af11-af8ae54a9f84",
+    id: "c1148d3f-080c-47be-872f-3092b505c740",
     variations: {
         dark: require('./images/17.png'),
         light: require('./images/17.png'),
@@ -76,7 +76,7 @@ const headers = {
 },
 {
     name: "18.png",
-    id: "6abfe6c9-4766-43ae-999a-9bf58490d896",
+    id: "c0d01f95-22b1-425c-bf58-a7844540a3d5",
     variations: {
         dark: require('./images/18.png'),
         light: require('./images/18.png'),
@@ -84,7 +84,7 @@ const headers = {
 },
 {
     name: "19.png",
-    id: "55a58a57-2732-4a74-a43f-c8a509722c7f",
+    id: "9672addf-97cb-4ad7-b43f-6db20f804dd5",
     variations: {
         dark: require('./images/19.png'),
         light: require('./images/19.png'),
@@ -92,7 +92,7 @@ const headers = {
 },
 {
     name: "2.png",
-    id: "dfb2c75b-3561-4b77-af8e-11e71bdbbab3",
+    id: "a9496a29-84ba-4565-88b3-484ce63ab269",
     variations: {
         dark: require('./images/2.png'),
         light: require('./images/2.png'),
@@ -100,7 +100,7 @@ const headers = {
 },
 {
     name: "20.png",
-    id: "26d8c926-50b0-493a-93df-8e17171ff388",
+    id: "5675f47a-6320-41f8-944b-0f88cddf585e",
     variations: {
         dark: require('./images/20.png'),
         light: require('./images/20.png'),
@@ -108,7 +108,7 @@ const headers = {
 },
 {
     name: "21.png",
-    id: "17dbccd1-04bc-47c9-9b96-73bd17ef411f",
+    id: "4bdac9b8-b7d5-4887-94d9-ec7d19592a05",
     variations: {
         dark: require('./images/21.png'),
         light: require('./images/21.png'),
@@ -116,7 +116,7 @@ const headers = {
 },
 {
     name: "22.png",
-    id: "ad8a0e3e-df5c-4c95-9082-4503405e44ec",
+    id: "7525a453-573b-41f6-b117-2533fed2d612",
     variations: {
         dark: require('./images/22.png'),
         light: require('./images/22.png'),
@@ -124,7 +124,7 @@ const headers = {
 },
 {
     name: "23.png",
-    id: "0029f982-c892-4c37-a9ca-edd28fe41d1c",
+    id: "a118bb44-979c-4e35-af38-5850dd19f71e",
     variations: {
         dark: require('./images/23.png'),
         light: require('./images/23.png'),
@@ -132,7 +132,7 @@ const headers = {
 },
 {
     name: "24.png",
-    id: "61c81943-57da-434d-a452-ff0ac1389ce5",
+    id: "509bc1b4-b37e-4229-90ad-4a7a29beb996",
     variations: {
         dark: require('./images/24.png'),
         light: require('./images/24.png'),
@@ -140,7 +140,7 @@ const headers = {
 },
 {
     name: "25.png",
-    id: "ea694f29-fb92-4adc-8f95-b475356587f2",
+    id: "96045ff2-c466-432c-aeaa-68becd6239bc",
     variations: {
         dark: require('./images/25.png'),
         light: require('./images/25.png'),
@@ -148,7 +148,7 @@ const headers = {
 },
 {
     name: "26.png",
-    id: "d6c6a314-a33e-4172-91ab-eae422ea42f4",
+    id: "8162716f-68c5-4d71-99a8-99f44d52dfed",
     variations: {
         dark: require('./images/26.png'),
         light: require('./images/26.png'),
@@ -156,7 +156,7 @@ const headers = {
 },
 {
     name: "27.png",
-    id: "9a7af998-b808-431c-8f5e-ad38c1086bd5",
+    id: "1accf8d8-1ce1-4634-9c85-96e1eaa46796",
     variations: {
         dark: require('./images/27.png'),
         light: require('./images/27.png'),
@@ -164,7 +164,7 @@ const headers = {
 },
 {
     name: "28.png",
-    id: "e9a6e2a6-356e-494f-9556-45e80abe727b",
+    id: "9a969d06-3c2f-4879-852e-cc3e440b00a4",
     variations: {
         dark: require('./images/28.png'),
         light: require('./images/28.png'),
@@ -172,7 +172,7 @@ const headers = {
 },
 {
     name: "29.png",
-    id: "bfa70c75-f399-47ae-8484-aacfcdf88b23",
+    id: "c5fcc8d8-3be2-40bd-a7fb-bbcbca88ea2b",
     variations: {
         dark: require('./images/29.png'),
         light: require('./images/29.png'),
@@ -180,7 +180,7 @@ const headers = {
 },
 {
     name: "3.png",
-    id: "7e269b17-06bb-4d76-b1aa-38d3eaf6a24e",
+    id: "4d8494b0-95b4-4ad9-a911-1336ed162751",
     variations: {
         dark: require('./images/3.png'),
         light: require('./images/3.png'),
@@ -188,7 +188,7 @@ const headers = {
 },
 {
     name: "30.png",
-    id: "f90ca69c-fca7-4cd7-a058-a20e36b36d9a",
+    id: "7df4df0e-08c9-4537-998c-175955a641e8",
     variations: {
         dark: require('./images/30.png'),
         light: require('./images/30.png'),
@@ -196,7 +196,7 @@ const headers = {
 },
 {
     name: "31.png",
-    id: "6dde59e1-0356-4c23-a5bc-254693e06d36",
+    id: "4cad7adb-eed5-45bb-a6f0-2118c733dde3",
     variations: {
         dark: require('./images/31.png'),
         light: require('./images/31.png'),
@@ -204,7 +204,7 @@ const headers = {
 },
 {
     name: "32.png",
-    id: "33694327-62e3-473b-abb6-810b878423d4",
+    id: "21930251-2f53-4890-9d22-cf61069eac84",
     variations: {
         dark: require('./images/32.png'),
         light: require('./images/32.png'),
@@ -212,7 +212,7 @@ const headers = {
 },
 {
     name: "33.png",
-    id: "419df92b-21f5-458e-b623-d7f615171702",
+    id: "7184de58-6394-4f53-b24e-78eec487c477",
     variations: {
         dark: require('./images/33.png'),
         light: require('./images/33.png'),
@@ -220,7 +220,7 @@ const headers = {
 },
 {
     name: "34.png",
-    id: "bbdf708b-87c3-48b5-83b5-75076e1ae323",
+    id: "c4fb0619-e41d-4ad6-bc8a-39124afff6fa",
     variations: {
         dark: require('./images/34.png'),
         light: require('./images/34.png'),
@@ -228,7 +228,7 @@ const headers = {
 },
 {
     name: "35.png",
-    id: "75ec1ae4-ffde-428e-be68-d65a249077ee",
+    id: "66a546c8-8d6d-479a-ba5c-252898ba29b3",
     variations: {
         dark: require('./images/35.png'),
         light: require('./images/35.png'),
@@ -236,7 +236,7 @@ const headers = {
 },
 {
     name: "36.png",
-    id: "d086db21-c6f2-4b83-afc1-b110d7b69693",
+    id: "ae04e668-1f2b-412c-9707-3a4ea6ac5d18",
     variations: {
         dark: require('./images/36.png'),
         light: require('./images/36.png'),
@@ -244,7 +244,7 @@ const headers = {
 },
 {
     name: "37.png",
-    id: "0c3150ab-16c0-4f2e-b376-43fe5291cc0b",
+    id: "211924ae-f148-4d8c-a8ef-b0b1013ec35b",
     variations: {
         dark: require('./images/37.png'),
         light: require('./images/37.png'),
@@ -252,7 +252,7 @@ const headers = {
 },
 {
     name: "38.png",
-    id: "4cef80a1-3329-41c7-a0cc-0e2ffcfe9f86",
+    id: "1bdc15c1-0117-4b9a-8587-49d7b0644628",
     variations: {
         dark: require('./images/38.png'),
         light: require('./images/38.png'),
@@ -260,7 +260,7 @@ const headers = {
 },
 {
     name: "39.png",
-    id: "e2c0aaf1-34e3-4c05-a78c-14e6263bf0c2",
+    id: "5083ee3d-6890-4a45-95a2-c9924e1c2de5",
     variations: {
         dark: require('./images/39.png'),
         light: require('./images/39.png'),
@@ -268,7 +268,7 @@ const headers = {
 },
 {
     name: "4.png",
-    id: "5e4521bf-0fdd-4feb-bc73-2723997497c9",
+    id: "6f120a78-35ae-40d5-be83-4c04f0bae9d4",
     variations: {
         dark: require('./images/4.png'),
         light: require('./images/4.png'),
@@ -276,7 +276,7 @@ const headers = {
 },
 {
     name: "40.png",
-    id: "34eaabe8-3178-4882-a1d6-25e0f045ca06",
+    id: "9b9d377f-9070-4314-9f17-d06686453754",
     variations: {
         dark: require('./images/40.png'),
         light: require('./images/40.png'),
@@ -284,7 +284,7 @@ const headers = {
 },
 {
     name: "41.png",
-    id: "4748f9cd-4935-4c76-817a-168d86a2e072",
+    id: "cadc7fa8-9c0e-4d9d-9711-b10e69f8bdf8",
     variations: {
         dark: require('./images/41.png'),
         light: require('./images/41.png'),
@@ -292,7 +292,7 @@ const headers = {
 },
 {
     name: "42.png",
-    id: "007699c1-ea74-4b8d-8bc2-0fa8b5424913",
+    id: "6bbe49f9-48c9-495d-a438-92d9679979d2",
     variations: {
         dark: require('./images/42.png'),
         light: require('./images/42.png'),
@@ -300,7 +300,7 @@ const headers = {
 },
 {
     name: "43.png",
-    id: "95d5c090-d437-42a7-83ab-325237736681",
+    id: "aa732471-4c51-400d-9238-093f8455f897",
     variations: {
         dark: require('./images/43.png'),
         light: require('./images/43.png'),
@@ -308,7 +308,7 @@ const headers = {
 },
 {
     name: "5.png",
-    id: "d7e60419-3843-4078-a5b1-482136eb4efc",
+    id: "edd84621-172b-43bb-954e-d2dcc060da98",
     variations: {
         dark: require('./images/5.png'),
         light: require('./images/5.png'),
@@ -316,7 +316,7 @@ const headers = {
 },
 {
     name: "6.png",
-    id: "a0d0d555-af24-467b-987b-7b9b3f1b79bd",
+    id: "187c7b98-6dce-4896-9032-5cb3b4284681",
     variations: {
         dark: require('./images/6.png'),
         light: require('./images/6.png'),
@@ -324,7 +324,7 @@ const headers = {
 },
 {
     name: "7.png",
-    id: "d0f4c882-81fd-4de7-92a0-d5b7af27a999",
+    id: "cd310b45-c40e-449f-af7d-4887d86e228a",
     variations: {
         dark: require('./images/7.png'),
         light: require('./images/7.png'),
@@ -332,7 +332,7 @@ const headers = {
 },
 {
     name: "71.png",
-    id: "b3c2c4f3-7534-458e-9771-9d89d12aaad7",
+    id: "d1b675a0-c510-4452-ac43-d7b1963956d1",
     variations: {
         dark: require('./images/71.png'),
         light: require('./images/71.png'),
@@ -340,7 +340,7 @@ const headers = {
 },
 {
     name: "72.png",
-    id: "e8f9e890-2257-4c7e-ad02-1236ad3e06af",
+    id: "83a3847f-72ec-4b2e-ba55-ee543fb8bfca",
     variations: {
         dark: require('./images/72.png'),
         light: require('./images/72.png'),
@@ -348,7 +348,7 @@ const headers = {
 },
 {
     name: "73.png",
-    id: "2a04f925-9a30-4d5f-982b-46af85352587",
+    id: "4f56696b-3924-4b4b-bf15-d787a10651c7",
     variations: {
         dark: require('./images/73.png'),
         light: require('./images/73.png'),
@@ -356,7 +356,7 @@ const headers = {
 },
 {
     name: "74.png",
-    id: "fbad1bcc-41ab-4c3a-9caf-f7f8ea5a87cf",
+    id: "86959ea6-fcd3-45b6-acd7-3b89bf9a801c",
     variations: {
         dark: require('./images/74.png'),
         light: require('./images/74.png'),
@@ -364,7 +364,7 @@ const headers = {
 },
 {
     name: "8.png",
-    id: "e8ad1410-01a7-44ca-a836-7fd99931c9bf",
+    id: "17f7e0c3-7b8b-4cf3-8464-f5364a151065",
     variations: {
         dark: require('./images/8.png'),
         light: require('./images/8.png'),
@@ -372,7 +372,7 @@ const headers = {
 },
 {
     name: "9.png",
-    id: "aceff99e-3c52-4841-9093-f7a2b5fc9f73",
+    id: "227e4bc7-a317-4bb2-9b97-3d47684d18b2",
     variations: {
         dark: require('./images/9.png'),
         light: require('./images/9.png'),
