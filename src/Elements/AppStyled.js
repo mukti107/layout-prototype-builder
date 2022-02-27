@@ -47,7 +47,8 @@ export const Layouts = styled.div`
   transform-origin: top right;
   transition: transform 0.6s;
   z-index: -1;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: visible;
   ${Kiosk}:hover & {
     ${({ show }) => show && "transform: translateX(100%);"}
   }
